@@ -7,7 +7,7 @@ body {
     border-style: dotted;
 }
 
-.welcome-row {
+.welcome-content {
     display: flex;
 }
 
