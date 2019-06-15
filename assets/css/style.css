@@ -32,7 +32,8 @@ body {
     line-height: 1.2;
 }
 
-.start-button {
+.start-button,
+.finish-button {
     margin-top: 2.5%;
     margin-bottom: 3.5%;
     background: yellow;
