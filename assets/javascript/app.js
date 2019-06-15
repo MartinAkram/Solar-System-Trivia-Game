@@ -11,12 +11,16 @@ $(".finish-button").on("click", function () {
     $("body").scrollTop(0)
 })
 
+$(".new-game-button").on("click", function () {
+    location.reload()
+})
+
 //Start Timer Function
 
 
 $(".start-button").on("click", threeMinutes)
 
-var seconds = 1;
+var seconds = 180;
 var intervalId;
 
 function threeMinutes() {
