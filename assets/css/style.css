@@ -11,6 +11,14 @@ body {
     display: flex;
 }
 
+.game-content {
+    display: none;
+}
+
+.result-content {
+    display: none;
+}
+
 .welcome-sub-row {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -33,7 +41,8 @@ body {
 }
 
 .start-button,
-.finish-button {
+.finish-button,
+.new-game-button {
     margin-top: 2.5%;
     margin-bottom: 3.5%;
     background: yellow;
@@ -43,10 +52,6 @@ body {
 
 #solar-system {
     width: 100%
-}
-
-.game-content {
-    display: none;
 }
 
 .game-sub-row {

@@ -1,7 +1,14 @@
 //Click Start Button to start game
 $(".start-button").on("click", function () {
     $(".welcome-content").css("display", "none");
-    $(".game-content").css("display", "flex")
+    $(".game-content").css("display", "flex");
+    $("body").scrollTop(0);
+})
+
+$(".finish-button").on("click", function () {
+    $(".game-content").css("display", "none");
+    $(".result-content").css("display", "flex");
+    $("body").scrollTop(0)
 })
 
 //Start Timer Function
