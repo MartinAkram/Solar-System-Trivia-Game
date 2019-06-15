@@ -7,17 +7,24 @@ $(".start-button").on("click", function () {
 //Start Timer Function
 
 
-$(".start-button").on("click", twoMinutes)
+$(".start-button").on("click", threeMinutes)
 
-var seconds = 180;
+var seconds = 1;
 var intervalId;
 
-function twoMinutes() {
+function threeMinutes() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000)
 }
 
 function decrement() {
-    seconds--;
-    $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>")
+    if (seconds > 0) {
+        seconds--;
+        $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>")
+        // } else if (seconds === 0) {
+        //     alert("Game Over");
+        //finalGrade()
+    }
 }
+
+var finalGrade;
