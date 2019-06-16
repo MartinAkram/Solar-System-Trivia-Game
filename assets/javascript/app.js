@@ -9,7 +9,7 @@ const triviaQuestions = [{
         c: "The Great Red Tornado",
         d: "The Great Big Spot"
     },
-    solution: "b"
+    solution: "The Great Red Spot"
 }, {
     question: "Who was the first man to walk on the Moon?",
     answers: {
@@ -18,7 +18,7 @@ const triviaQuestions = [{
         c: "Louis Armstrong",
         d: "James Armstrong"
     },
-    solution: "a"
+    solution: "Neil Armstrong"
 }, {
     question: "Which planet is often referred to as “Earth’s sister planet” due to its similar size and composition?",
     answers: {
@@ -27,7 +27,7 @@ const triviaQuestions = [{
         c: "Saturn",
         d: "Pluto"
     },
-    solution: "a"
+    solution: "Venus"
 }, {
     question: "The Solar System’s lowest temperature of -371 °F is recorded on which planet?",
     answers: {
@@ -36,7 +36,7 @@ const triviaQuestions = [{
         c: "Uranus",
         d: "Saturn"
     },
-    solution: "c"
+    solution: "Uranus"
 }, {
     question: "In what year was Pluto demoted from Planet to Dwarf Planet?",
     answers: {
@@ -45,7 +45,7 @@ const triviaQuestions = [{
         c: "1996",
         d: "2006"
     },
-    solution: "d"
+    solution: "2006"
 }, {
     question: "Which planet has the most extensive system of rings in the Solar System?",
     answers: {
@@ -54,7 +54,7 @@ const triviaQuestions = [{
         c: "Venus",
         d: "Saturn"
     },
-    solution: "d"
+    solution: "Saturn"
 }, {
     question: "Approximately how old is the Earth?",
     answers: {
@@ -63,7 +63,7 @@ const triviaQuestions = [{
         c: "10.5 Billion Years",
         d: "13.5 Billion Years"
     },
-    solution: "b"
+    solution: "4.5 Billion Years"
 }, {
     question: "The Sun accounts for what percentage of the Solar System's mass?",
     answers: {
@@ -72,7 +72,7 @@ const triviaQuestions = [{
         c: "89%",
         d: "99%"
     },
-    solution: "d"
+    solution: "99%"
 }, {
     question: "Which planet is the most distant planet from the Sun in the Solar System?",
     answers: {
@@ -81,7 +81,7 @@ const triviaQuestions = [{
         c: "Venus",
         d: "Mars"
     },
-    solution: "a"
+    solution: "Neptune"
 }, {
     question: "What was the name of the first spacecraft launched to visit the moon by the USSR in 1959?",
     answers: {
@@ -90,7 +90,7 @@ const triviaQuestions = [{
         c: "Luna 1",
         d: "Challenger 1"
     },
-    solution: "c"
+    solution: "Luna 1"
 }]
 
 
@@ -151,7 +151,7 @@ function displayTriviaQuiz(arr) {
             + answers.join('')
             + '</div>'
             + '<br>'
-            + '<hr style = "border-top: 1px dashed chartreuse; width: 50%">'
+            + '<hr style="border-top: 1px dashed chartreuse; width: 50%">'
             + '<br>');
     }
     $("#display-trivia-questions").html(htmlOutput);
@@ -174,31 +174,20 @@ function displayTriviaSolutions(arr) {
     var htmlOutput = [];
 
     for (var i = 0; i < triviaQuestions.length; i++) {
-        var answers = [];
-
-        for (answerOption in arr[i].answers) {
-            answers.push('<div class="form-check form-check-inline">'
-                + '<label class="form-check-label">'
-                + '<input class="form-check-input" type="radio" name="question' + (i + 1) + '" value="' + answerOption + '">'
-                + ' '
-                + arr[i].answers[answerOption] + '&nbsp'
-                + '</label>'
-                + '</div>');
-        }
-
         htmlOutput.push('<div class="question text-center">'
             + arr[i].question
             + '</div>'
-            + '<div class="answers text-center">'
-            + answers.join('')
+            + '<div class="solution text-center">'
+            + arr[i].solution
             + '</div>'
             + '<br>'
             + '<hr style = "border-top: 1px dashed chartreuse; width: 50%">'
             + '<br>');
     }
-    $("#display-trivia-questions").html(htmlOutput);
-
+    $("#display-trivia-results").html(htmlOutput);
 }
+
+displayTriviaSolutions(triviaQuestions);
 
 //Here we set an event listener for when the "Play Again!" button is clicked on the results page
 //It simply refreshes the game and starts everything from scratch
