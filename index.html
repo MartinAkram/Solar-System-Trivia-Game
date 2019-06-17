@@ -20,7 +20,7 @@
                         <p class="game-title text-center">Next Stop: The Solar System</p>
                         <br>
                         <p class="text-center">
-                            You will have 3 minutes to answer 10 questions about the Solar System!
+                            You have 10 questions about the Solar System and 30 seconds to answer each question!
                             <br>
                             The clock will begin counting down as soon as you press the "Start Game" button
                         </p>
@@ -41,11 +41,35 @@
                     <div class="col-12 game-message">
                         <p class="game-title text-center">★ Welcome To The Solar System ★</p>
                         <h3 class="text-center">Time Remaining</h3>
-                        <h4 class="timer text-center">⏳ 180 ⏳</h4>
+                        <h4 class="timer text-center">⏳ 30 ⏳</h4>
                         <hr style="border-top: 2px solid chartreuse; width: 95%">
                         <br>
-                        <div id="display-trivia-questions"></div>
-                        <div class="col-12 text-center">
+                        <div id="display-trivia-questions">
+                            <div class="question form-check-inline text-center"></div>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="answer-a form-check-input" type="radio" value="a">
+                                <label class="label-a form-check-label" for=""></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="answer-b form-check-input" type="radio" value="b">
+                                <label class="label-b form-check-label" for=""></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="answer-c form-check-input" type="radio" value="c">
+                                <label class="label-c form-check-label" for=""></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="answer-d form-check-input" type="radio" value="d">
+                                <label class="label-d form-check-label" for=""></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-12 text-center" id="next-button">
+                            <button type="button" class="btn btn-primary btn-lg next-button text-center">Next
+                                Question</button>
+                        </div>
+                        <div class="col-12 text-center" id="finish-button">
                             <button type="button"
                                 class="btn btn-primary btn-lg finish-button text-center">Done!</button>
                         </div>

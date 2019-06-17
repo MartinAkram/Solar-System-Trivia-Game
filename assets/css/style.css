@@ -41,6 +41,7 @@ body {
 }
 
 .start-button,
+.next-button,
 .finish-button,
 .new-game-button {
     margin-top: 2.5%;
@@ -48,6 +49,10 @@ body {
     background: yellow;
     color: black;
     width: 20%
+}
+
+#finish-button{
+    display:none;
 }
 
 #solar-system {
