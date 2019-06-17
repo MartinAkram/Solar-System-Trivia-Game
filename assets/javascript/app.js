@@ -170,29 +170,4 @@ $(document).ready(function () {
         }
     });
 
-
-
-    //<--------------------EVENT LISTENERS-------------------->
-
-
-
-
-    //Here we add a second event listener for the "Start Game!" button on the home page
-    //Clicking the button will get the timer started
-
-
-    //Here we set an event listener for when the "Done!" button is clicked on the quiz page
-    // $(".finish-button").on("click", function () {
-    //     $(".game-content").css("display", "none");
-    //     $(".result-content").css("display", "flex");
-    //     $("body").scrollTop(0)
-    //     scoreTriviaGame(triviaQuestions);
-    // })
-
-    //Here we add a second event listener for the "Done!" button on the quiz page
-
-
-    //Here we set an event listener for when the "Play Again!" button is clicked on the results page
-    //It simply refreshes the game and starts everything from scratch
-
 })
