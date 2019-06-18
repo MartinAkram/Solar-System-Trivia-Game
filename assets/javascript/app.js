@@ -129,7 +129,7 @@ $(document).ready(function () {
     function decrement2() {
         if (seconds2 > 0) {
             seconds2--;
-            $(".timer").html(seconds2 + 1);
+            $(".timer").html("⏳ " + (seconds2 + 1) + " ⏳");
         } else if (seconds2 === 0) {
             $(".next-button").click();
         }
@@ -207,7 +207,7 @@ $(document).ready(function () {
             radioButtons.prop("disabled", true);
             isChecked.prop("disabled", false);
             clearInterval(intervalId);
-            $(".timer").text("5")
+            $(".timer").text("⏳ 5 ⏳")
             threeSeconds();
             $("#time-remaining").text("New question in");
         }
