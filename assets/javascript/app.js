@@ -4,6 +4,7 @@ $(document).ready(function () {
     var intervalId;
     var radioButtons = $('input[type="radio"]');
     var questionCounter = 0;
+    var finalScore = 0;
 
 
     //<--------------------QUIZ ARRAY-------------------->
@@ -142,6 +143,9 @@ $(document).ready(function () {
 
     $(".finish-button").on("click", function () {
         clearTimeout(intervalId);
+        $(".result-content").css("display", "flex");
+        $(".welcome-content").css("display", "none");
+        $(".game-content").css("display", "none");
     })
 
     $(".new-game-button").on("click", function () {
@@ -191,7 +195,12 @@ $(document).ready(function () {
 
         if (chosenOption == correctOption) {
             $("#win-or-loss-message").text("Nicely Done!");
-            $("#correct-answer-message").text("The correct answer is indeed " + correctAnswer)
+            $("#correct-answer-message").text("The correct answer is indeed " + correctAnswer);
+            finalScore++;
+            var numberOfCorrectAnswers = finalScore;
+            var numberOfIncorrectAnswers = 10 - finalScore;
+            $("#display-trivia-results").text(finalScore * 10 + "%");
+            $("#final-tally").text("You got " + numberOfCorrectAnswers + " questions right and " + numberOfIncorrectAnswers + " questions wrong");
         } else {
             $("#win-or-loss-message").text("Oh no, you got it wrong!");
             $("#correct-answer-message").text("The correct answer was " + correctAnswer)
