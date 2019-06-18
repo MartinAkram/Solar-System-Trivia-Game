@@ -110,6 +110,7 @@ $(document).ready(function () {
     //Below I define the timer functionality of the app
     var seconds = 30;
     var intervalId;
+    var radioButtons = $('input[type="radio"]');
 
     //This function sets the interval for the game
     function thirtySeconds() {
@@ -122,22 +123,23 @@ $(document).ready(function () {
 
         if (seconds > 0) {
             seconds--;
-            $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>")
+            $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>");
         }
     }
 
     $(".next-button").on("click", function () {
-        $(".timer").text("⏳ 30 ⏳")
+        $(".timer").text("⏳ 30 ⏳");
         seconds = 30;
         thirtySeconds();
+        radioButtons.prop("checked", false);
     })
 
     $(".finish-button").on("click", function () {
-        clearTimeout(intervalId)
+        clearTimeout(intervalId);
     })
 
     $(".new-game-button").on("click", function () {
-        location.reload()
+        location.reload();
     });
 
     var questionCounter = 0;
@@ -150,24 +152,42 @@ $(document).ready(function () {
         if (questionCounter < triviaQuestions.length) {
             $(".question").html(triviaQuestions[questionCounter].question);
 
-            $(".answer-a").attr("name", "question" + questionCounter);
-            $(".answer-b").attr("name", "question" + questionCounter);
-            $(".answer-c").attr("name", "question" + questionCounter);
-            $(".answer-d").attr("name", "question" + questionCounter);
+            $(".answer").attr("name", "question" + questionCounter);
 
             $(".label-a").attr("for", "question" + questionCounter);
-            $(".label-a").html(triviaQuestions[questionCounter].answers.a)
+            $(".label-a").html(triviaQuestions[questionCounter].answers.a);
 
             $(".label-b").attr("for", "question" + questionCounter);
-            $(".label-b").html(triviaQuestions[questionCounter].answers.b)
+            $(".label-b").html(triviaQuestions[questionCounter].answers.b);
 
             $(".label-c").attr("for", "question" + questionCounter);
-            $(".label-c").html(triviaQuestions[questionCounter].answers.c)
+            $(".label-c").html(triviaQuestions[questionCounter].answers.c);
 
             $(".label-d").attr("for", "question" + questionCounter);
-            $(".label-d").html(triviaQuestions[questionCounter].answers.d)
+            $(".label-d").html(triviaQuestions[questionCounter].answers.d);
+
             questionCounter++
         }
     });
 
-})
+
+    radioButtons.change(function () {
+        var isChecked = radioButtons.filter(function () {
+            return $(this).prop("checked");
+        });
+
+        var chosenOption = isChecked.val();
+        var correctOption = triviaQuestions[questionCounter - 1].solution
+        var correctAnswer = triviaQuestions[questionCounter - 1].answers[correctOption]
+
+        console.log(chosenOption);
+        console.log(correctOption);
+        console.log(correctAnswer);
+
+        if (chosenOption == correctOption) {
+            console.log("Great job!")
+        } else { console.log("Sorry! The correct answer is " + correctAnswer) }
+
+        radioButtons.empty()
+    });
+});
