@@ -55,6 +55,10 @@ body {
     display:none;
 }
 
+#next-button{
+    display:none;
+}
+
 #solar-system {
     width: 100%
 }

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //<-----------------Global Variables----------------->
     var seconds = 30;
+    var seconds2 = 2;
     var intervalId;
     var radioButtons = $('input[type="radio"]');
     var questionCounter = 0;
@@ -117,12 +118,24 @@ $(document).ready(function () {
     //This function sets the interval for the game
     function thirtySeconds() {
         clearInterval(intervalId);
-        intervalId = setInterval(decrement, 1000);
+        intervalId = setInterval(decrement1, 1000);
+    }
+
+    function threeSeconds() {
+        intervalId = setInterval(decrement2, 1000)
     }
 
     //This function decreases the time by one second and updates the html accordingly
-    function decrement() {
+    function decrement2() {
+        if (seconds2 > 0) {
+            seconds2--;
+            $(".timer").html("<h4>" + "New question in " + (seconds2 + 1) + "</h4>");
+        } else if (seconds2 === 0) {
+            $(".next-button").click();
+        }
+    }
 
+    function decrement1() {
         if (seconds > 0) {
             seconds--;
             $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>");
@@ -140,6 +153,10 @@ $(document).ready(function () {
         radioButtons.prop("disabled", false);
         $("#win-or-loss-message").empty();
         $("#correct-answer-message").empty();
+        seconds2 = 2;
+        $("#time-remaining").css("visibility", "visible");
+        $("#win-or-loss-message").html("&nbsp;");
+        $("#correct-answer-message").html("&nbsp;");
     })
 
     $(".finish-button").on("click", function () {
@@ -189,20 +206,22 @@ $(document).ready(function () {
         if (isChecked) {
             radioButtons.prop("disabled", true);
             isChecked.prop("disabled", false);
+            clearInterval(intervalId);
+            $(".timer").text("New question in 3")
+            threeSeconds();
+            $("#time-remaining").css("visibility", "hidden");
         }
 
         var chosenOption = isChecked.val();
         var correctOption = triviaQuestions[questionCounter - 1].solution;
         var correctAnswer = triviaQuestions[questionCounter - 1].answers[correctOption];
 
-        console.log(chosenOption);
-        console.log(correctOption);
-        console.log(correctAnswer);
-
         if (chosenOption == correctOption) {
             $("#win-or-loss-message").text("Nicely Done!");
             $("#correct-answer-message").text("The correct answer is indeed " + correctAnswer);
+
             finalScore++;
+
             var numberOfCorrectAnswers = finalScore;
             var numberOfIncorrectAnswers = 10 - finalScore;
             $("#display-trivia-results").text(finalScore * 10 + "%");
@@ -212,5 +231,6 @@ $(document).ready(function () {
             $("#correct-answer-message").text("The correct answer was " + correctAnswer)
         }
         radioButtons.empty()
+
     });
 });
