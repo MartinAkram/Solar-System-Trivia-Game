@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //<-----------------Global Variables----------------->
-    var seconds = 3;
+    var seconds = 30;
     var intervalId;
     var radioButtons = $('input[type="radio"]');
     var questionCounter = 0;
@@ -134,9 +134,10 @@ $(document).ready(function () {
 
     $(".next-button").on("click", function () {
         $(".timer").text("⏳ 30 ⏳");
-        seconds = 3;
+        seconds = 30;
         thirtySeconds();
         radioButtons.prop("checked", false);
+        radioButtons.prop("disabled", false);
         $("#win-or-loss-message").empty();
         $("#correct-answer-message").empty();
     })
@@ -184,6 +185,11 @@ $(document).ready(function () {
         var isChecked = radioButtons.filter(function () {
             return $(this).prop("checked");
         });
+
+        if (isChecked) {
+            radioButtons.prop("disabled", true);
+            isChecked.prop("disabled", false);
+        }
 
         var chosenOption = isChecked.val();
         var correctOption = triviaQuestions[questionCounter - 1].solution;
