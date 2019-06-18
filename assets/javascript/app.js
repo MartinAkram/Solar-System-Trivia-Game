@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //<-----------------Global Variables----------------->
     var seconds = 30;
-    var seconds2 = 2;
+    var seconds2 = 4;
     var intervalId;
     var radioButtons = $('input[type="radio"]');
     var questionCounter = 0;
@@ -129,7 +129,7 @@ $(document).ready(function () {
     function decrement2() {
         if (seconds2 > 0) {
             seconds2--;
-            $(".timer").html("<h4>" + "New question in " + (seconds2 + 1) + "</h4>");
+            $(".timer").html(seconds2 + 1);
         } else if (seconds2 === 0) {
             $(".next-button").click();
         }
@@ -153,8 +153,8 @@ $(document).ready(function () {
         radioButtons.prop("disabled", false);
         $("#win-or-loss-message").empty();
         $("#correct-answer-message").empty();
-        seconds2 = 2;
-        $("#time-remaining").css("visibility", "visible");
+        seconds2 = 4;
+        $("#time-remaining").text("Time Remaining");
         $("#win-or-loss-message").html("&nbsp;");
         $("#correct-answer-message").html("&nbsp;");
     })
@@ -207,9 +207,9 @@ $(document).ready(function () {
             radioButtons.prop("disabled", true);
             isChecked.prop("disabled", false);
             clearInterval(intervalId);
-            $(".timer").text("New question in 3")
+            $(".timer").text("5")
             threeSeconds();
-            $("#time-remaining").css("visibility", "hidden");
+            $("#time-remaining").text("New question in");
         }
 
         var chosenOption = isChecked.val();
