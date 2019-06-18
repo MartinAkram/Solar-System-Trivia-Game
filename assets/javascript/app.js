@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    //<-----------------Global Variables----------------->
+    var seconds = 3;
+    var intervalId;
+    var radioButtons = $('input[type="radio"]');
+    var questionCounter = 0;
+
 
     //<--------------------QUIZ ARRAY-------------------->
     //This array contains 10 objects, each of which contains a question, possible solutions, and the solution
@@ -107,15 +113,10 @@ $(document).ready(function () {
     //Clicking the button will hide the welcome screen and display the quiz & timer
     $(".start-button").on("click", thirtySeconds)
 
-    //Below I define the timer functionality of the app
-    var seconds = 30;
-    var intervalId;
-    var radioButtons = $('input[type="radio"]');
-
     //This function sets the interval for the game
     function thirtySeconds() {
         clearInterval(intervalId);
-        intervalId = setInterval(decrement, 1000)
+        intervalId = setInterval(decrement, 1000);
     }
 
     //This function decreases the time by one second and updates the html accordingly
@@ -124,14 +125,19 @@ $(document).ready(function () {
         if (seconds > 0) {
             seconds--;
             $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>");
+        } else if (seconds === 0) {
+            $("#win-or-loss-message").text("Oh no! You're out of time!");
+            $("#correct-answer-message").text("The correct answer was " + triviaQuestions[questionCounter - 1].answers[triviaQuestions[questionCounter - 1].solution])
         }
     }
 
     $(".next-button").on("click", function () {
         $(".timer").text("⏳ 30 ⏳");
-        seconds = 30;
+        seconds = 3;
         thirtySeconds();
         radioButtons.prop("checked", false);
+        $("#win-or-loss-message").empty();
+        $("#correct-answer-message").empty();
     })
 
     $(".finish-button").on("click", function () {
@@ -142,7 +148,6 @@ $(document).ready(function () {
         location.reload();
     });
 
-    var questionCounter = 0;
     $(".next-button").on("click", function () {
         if (questionCounter === 9) {
             $(".next-button").css("display", "none");
@@ -177,17 +182,20 @@ $(document).ready(function () {
         });
 
         var chosenOption = isChecked.val();
-        var correctOption = triviaQuestions[questionCounter - 1].solution
-        var correctAnswer = triviaQuestions[questionCounter - 1].answers[correctOption]
+        var correctOption = triviaQuestions[questionCounter - 1].solution;
+        var correctAnswer = triviaQuestions[questionCounter - 1].answers[correctOption];
 
         console.log(chosenOption);
         console.log(correctOption);
         console.log(correctAnswer);
 
         if (chosenOption == correctOption) {
-            console.log("Great job!")
-        } else { console.log("Sorry! The correct answer is " + correctAnswer) }
-
+            $("#win-or-loss-message").text("Nicely Done!");
+            $("#correct-answer-message").text("The correct answer is indeed " + correctAnswer)
+        } else {
+            $("#win-or-loss-message").text("Oh no, you got it wrong!");
+            $("#correct-answer-message").text("The correct answer was " + correctAnswer)
+        }
         radioButtons.empty()
     });
 });
