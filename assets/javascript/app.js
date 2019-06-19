@@ -147,6 +147,11 @@ $(document).ready(function () {
             $(".timer").text("⏳ 5 ⏳");
             threeSeconds();
             $("#time-remaining").text("New question in");
+            if (questionCounter === 9 && secondsB === 0) {
+                $(".time-remaining").empty();
+                $(".timer").empty();
+
+            }
         }
     }
 
@@ -162,6 +167,7 @@ $(document).ready(function () {
         $("#time-remaining").text("Time Remaining");
         $("#win-or-loss-message").html("&nbsp;");
         $("#correct-answer-message").html("&nbsp;");
+        $("#question-number").text("Question " + (questionCounter + 1))
     })
 
     $(".finish-button").on("click", function () {
