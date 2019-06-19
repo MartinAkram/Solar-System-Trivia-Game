@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //<-----------------Global Variables----------------->
-    var seconds = 30;
-    var seconds2 = 4;
+    var secondsA = 4;
+    var secondsB = 8;
     var intervalId;
     var radioButtons = $('input[type="radio"]');
     var questionCounter = 0;
@@ -115,45 +115,50 @@ $(document).ready(function () {
     //Clicking the button will hide the welcome screen and display the quiz & timer
     $(".start-button").on("click", thirtySeconds)
 
-    //This function sets the interval for the game
-    function thirtySeconds() {
-        clearInterval(intervalId);
-        intervalId = setInterval(decrement1, 1000);
-    }
 
     function threeSeconds() {
-        intervalId = setInterval(decrement2, 1000)
+        intervalId = setInterval(threeSecondsDecrement, 1000)
     }
 
-    //This function decreases the time by one second and updates the html accordingly
-    function decrement2() {
-        if (seconds2 > 0) {
-            seconds2--;
-            $(".timer").html("⏳ " + (seconds2 + 1) + " ⏳");
-        } else if (seconds2 === 0) {
+    function threeSecondsDecrement() {
+        if (secondsA > 0) {
+            secondsA--;
+            $(".timer").html("⏳ " + (secondsA + 1) + " ⏳");
+        } else if (secondsA === 0) {
             $(".next-button").click();
         }
     }
 
-    function decrement1() {
-        if (seconds > 0) {
-            seconds--;
-            $(".timer").html("<h4>" + "⏳ " + seconds + " ⏳" + "</h4>");
-        } else if (seconds === 0) {
+    function thirtySeconds() {
+        clearInterval(intervalId);
+        intervalId = setInterval(thirtySecondsDecrement, 1000);
+    }
+
+    function thirtySecondsDecrement() {
+        if (secondsB > 0) {
+            secondsB--;
+            $(".timer").html("<h4>" + "⏳ " + secondsB + " ⏳" + "</h4>");
+        }
+        else if (secondsB === 0) {
             $("#win-or-loss-message").text("Oh no! You're out of time!");
-            $("#correct-answer-message").text("The correct answer was " + triviaQuestions[questionCounter - 1].answers[triviaQuestions[questionCounter - 1].solution])
+            $("#correct-answer-message").text("The correct answer was " + triviaQuestions[questionCounter - 1].answers[triviaQuestions[questionCounter - 1].solution]);
+            radioButtons.prop("disabled", true);
+            clearInterval(intervalId);
+            $(".timer").text("⏳ 5 ⏳");
+            threeSeconds();
+            $("#time-remaining").text("New question in");
         }
     }
 
     $(".next-button").on("click", function () {
         $(".timer").text("⏳ 30 ⏳");
-        seconds = 30;
+        secondsB = 8;
         thirtySeconds();
         radioButtons.prop("checked", false);
         radioButtons.prop("disabled", false);
         $("#win-or-loss-message").empty();
         $("#correct-answer-message").empty();
-        seconds2 = 4;
+        secondsA = 4;
         $("#time-remaining").text("Time Remaining");
         $("#win-or-loss-message").html("&nbsp;");
         $("#correct-answer-message").html("&nbsp;");
