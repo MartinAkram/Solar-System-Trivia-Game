@@ -124,7 +124,7 @@ $(document).ready(function () {
         if (secondsA > 0) {
             secondsA--;
             $(".timer").html("⏳ " + (secondsA + 1) + " ⏳");
-        } else if (secondsA === 0) {
+        } else if (secondsA === 0 && questionCounter !== 10) {
             $(".next-button").click();
         }
     }
@@ -150,7 +150,6 @@ $(document).ready(function () {
             if (questionCounter === 9 && secondsB === 0) {
                 $(".time-remaining").empty();
                 $(".timer").empty();
-
             }
         }
     }
@@ -182,12 +181,8 @@ $(document).ready(function () {
     });
 
     $(".next-button").on("click", function () {
-        if (questionCounter === 9) {
-            $(".next-button").css("display", "none");
-            $("#finish-button").css("display", "block");
-        }
 
-        if (questionCounter < triviaQuestions.length) {
+        if (questionCounter < triviaQuestions.length && questionCounter < 11) {
             $(".question").html(triviaQuestions[questionCounter].question);
 
             $(".answer").attr("name", "question" + questionCounter);
@@ -221,8 +216,11 @@ $(document).ready(function () {
             $(".timer").text("⏳ 5 ⏳")
             threeSeconds();
             $("#time-remaining").text("New question in");
+            if (questionCounter === 10) {
+                $("#finish-button").css("display", "block");
+            }
         }
-
+        console.log(questionCounter);
         var chosenOption = isChecked.val();
         var correctOption = triviaQuestions[questionCounter - 1].solution;
         var correctAnswer = triviaQuestions[questionCounter - 1].answers[correctOption];
