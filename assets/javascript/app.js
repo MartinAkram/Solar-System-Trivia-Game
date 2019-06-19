@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //<-----------------Global Variables----------------->
     var secondsA = 2;
-    var secondsB = 8;
+    var secondsB = 20;
     var intervalId;
     var radioButtons = $('input[type="radio"]');
     var questionCounter = 0;
@@ -126,6 +126,11 @@ $(document).ready(function () {
             $(".timer").html("⏳ " + (secondsA + 1) + " ⏳");
         } else if (secondsA === 0 && questionCounter !== 10) {
             $(".next-button").click();
+        } else if (secondsB === 0 && questionCounter === 10) {
+            clearTimeout(intervalId);
+            $(".timer").remove();
+            $("#time-remaining").text("Game Over!");
+            $("#finish-button").css("display", "block");
         }
     }
 
@@ -140,23 +145,19 @@ $(document).ready(function () {
             $(".timer").html("<h4>" + "⏳ " + secondsB + " ⏳" + "</h4>");
         }
         else if (secondsB === 0) {
-            $("#win-or-loss-message").text("Oh no! You're out of time!");
+            $("#win-or-loss-message").text("Oh no! You ran out of time!");
             $("#correct-answer-message").text("The correct answer was " + triviaQuestions[questionCounter - 1].answers[triviaQuestions[questionCounter - 1].solution]);
             radioButtons.prop("disabled", true);
             clearInterval(intervalId);
             $(".timer").text("⏳ 5 ⏳");
             threeSeconds();
             $("#time-remaining").text("New question in");
-            if (questionCounter === 9 && secondsB === 0) {
-                $(".time-remaining").empty();
-                $(".timer").empty();
-            }
         }
     }
 
     $(".next-button").on("click", function () {
-        $(".timer").text("⏳ 30 ⏳");
-        secondsB = 8;
+        $(".timer").text("⏳ 20 ⏳");
+        secondsB = 20;
         thirtySeconds();
         radioButtons.prop("checked", false);
         radioButtons.prop("disabled", false);
@@ -216,13 +217,17 @@ $(document).ready(function () {
             $(".timer").text("⏳ 3 ⏳")
             threeSeconds();
             $("#time-remaining").text("New question in");
-            if (questionCounter === 10) {
+            if (questionCounter === 9 && secondsA === 1) {
+                $(".timer").remove();
+                $("#time-remaining").text("Game Over!");
+                $("#finish-button").css("display", "block");
+            }
+            else if (questionCounter === 10) {
                 $(".timer").remove();
                 $("#time-remaining").text("Game Over!");
                 $("#finish-button").css("display", "block");
             }
         }
-        console.log(questionCounter);
         var chosenOption = isChecked.val();
         var correctOption = triviaQuestions[questionCounter - 1].solution;
         var correctAnswer = triviaQuestions[questionCounter - 1].answers[correctOption];
