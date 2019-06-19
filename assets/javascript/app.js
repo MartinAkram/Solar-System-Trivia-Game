@@ -126,11 +126,6 @@ $(document).ready(function () {
             $(".timer").html("⏳ " + (secondsA + 1) + " ⏳");
         } else if (secondsA === 0 && questionCounter !== 10) {
             $(".next-button").click();
-        } else if (secondsB === 0 && questionCounter === 10) {
-            clearTimeout(intervalId);
-            $(".timer").remove();
-            $("#time-remaining").text("Game Over!");
-            $("#finish-button").css("display", "block");
         }
     }
 
@@ -149,9 +144,17 @@ $(document).ready(function () {
             $("#correct-answer-message").text("The correct answer was " + triviaQuestions[questionCounter - 1].answers[triviaQuestions[questionCounter - 1].solution]);
             radioButtons.prop("disabled", true);
             clearInterval(intervalId);
-            $(".timer").text("⏳ 5 ⏳");
-            threeSeconds();
-            $("#time-remaining").text("New question in");
+            if (questionCounter < 10) {
+                $(".timer").text("⏳ 5 ⏳");
+                threeSeconds();
+                $("#time-remaining").text("New question in")
+            }
+            else if (questionCounter === 10) {
+                clearTimeout(intervalId);
+                $(".timer").remove();
+                $("#time-remaining").text("Game Over!");
+                $("#finish-button").css("display", "block");
+            };
         }
     }
 
