@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //<-----------------Global Variables----------------->
-    var secondsA = 4;
+    var secondsA = 3;
     var secondsB = 8;
     var intervalId;
     var radioButtons = $('input[type="radio"]');
@@ -162,7 +162,7 @@ $(document).ready(function () {
         radioButtons.prop("disabled", false);
         $("#win-or-loss-message").empty();
         $("#correct-answer-message").empty();
-        secondsA = 4;
+        secondsA = 3;
         $("#time-remaining").text("Time Remaining");
         $("#win-or-loss-message").html("&nbsp;");
         $("#correct-answer-message").html("&nbsp;");
@@ -213,10 +213,12 @@ $(document).ready(function () {
             radioButtons.prop("disabled", true);
             isChecked.prop("disabled", false);
             clearInterval(intervalId);
-            $(".timer").text("⏳ 5 ⏳")
+            $(".timer").text("⏳ 4 ⏳")
             threeSeconds();
             $("#time-remaining").text("New question in");
             if (questionCounter === 10) {
+                $(".timer").remove();
+                $("#time-remaining").text("Game Over!");
                 $("#finish-button").css("display", "block");
             }
         }
