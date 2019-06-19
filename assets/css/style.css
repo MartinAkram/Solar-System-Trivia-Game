@@ -1,24 +1,30 @@
+/* Here we set the background for the whole page */
 body {
     background-image: url(../images/space-background.gif)
 }
 
-
+/* Here we style our welcome-content, including the container and the font */
 .welcome-col {
     border-style: dotted;
 }
+.game-title {
+    font-family: monospace;
+    font-size: 35px;
+    line-height: 1.2;
+}
 
+/* We begin by showing the welcome-content, and hiding the game-content and result-content */
 .welcome-content {
     display: flex;
 }
-
 .game-content {
     display: none;
 }
-
 .result-content {
     display: none;
 }
 
+/* Here we style the welcome-container...Nothing fancy */
 .welcome-sub-row {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -34,35 +40,7 @@ body {
     border-width: 5px;
 }
 
-.game-title {
-    font-family: monospace;
-    font-size: 35px;
-    line-height: 1.2;
-}
-
-.start-button,
-.next-button,
-.finish-button,
-.new-game-button {
-    margin-top: 2.5%;
-    margin-bottom: 3.5%;
-    background: yellow;
-    color: black;
-    width: 20%
-}
-
-#finish-button{
-    display:none;
-}
-
-#next-button{
-    display:none;
-}
-
-#solar-system {
-    width: 100%
-}
-
+/* Here we style the game-container...Also nothing fancy */
 .game-sub-row {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -76,4 +54,27 @@ body {
     border-style: inset;
     border-color: chartreuse;
     border-width: 5px;
+}
+
+/* Here we style all of our buttons */
+.start-button,
+.next-button,
+.finish-button,
+.new-game-button {
+    margin-top: 2.5%;
+    margin-bottom: 3.5%;
+    background: yellow;
+    color: black;
+    width: 20%
+}
+
+/* Here we hide both the next and finish buttons */
+#next-button,
+#finish-button{
+    display:none;
+}
+
+/* Here we set the width of the solar-system image on the welcome-screen */
+#solar-system {
+    width: 100%
 }

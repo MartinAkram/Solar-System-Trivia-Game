@@ -7,18 +7,22 @@
     <title>Solar System Trivia Game!</title>
     <!-- Link to Boostrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <!-- Link to my personal css style sheet -->
+    <!-- Link to personal css style sheet -->
     <link rel="stylesheet" href="assets/css/style.css" />
 
 <body>
+    <!-- Here we use a Bootstrap container to hold our 3 sub-containers  -->
     <div class="container-fluid">
+        <!-- The first sub-container is called the "welcome-content" -->
         <div class="row welcome-content">
             <div class="col-12">
                 <div class="row welcome-sub-row">
                     <div class="col-12 welcome-message">
+                        <!-- The first 2 p-tags are just for styling purposes of the "welcome-content" container -->
                         <p class="game-title text-center"> ★ Welcome To The Twilight Zone ★</p>
                         <p class="game-title text-center">Next Stop: The Solar System</p>
                         <br>
+                        <!-- The following p-tag lists the instructions for the game -->
                         <p class="text-center">
                             You have 10 questions about the Solar System and 20 seconds to answer each question!
                             <br>
@@ -26,31 +30,43 @@
                         </p>
                     </div>
                     <div class="col-12 text-center">
+                        <!-- This button launches the game into Question 1 -->
                         <button type="button" class="btn btn-primary btn-lg start-button text-center">Start
                             Game!</button>
                     </div>
                     <div class="col-12">
+                        <!-- Fun image of the solar system -->
                         <img id="solar-system" src="assets/images/solar-system.png">
                     </div>
                 </div>
             </div>
         </div>
+        <!-- This is the second sub-container is called "game-content" -->
+        <!-- This is the meat of the game -->
         <div class="row game-content text-center">
             <div class="col-12">
                 <div class="row game-sub-row">
                     <div class="col-12 game-message">
                         <p class="game-title text-center">★ Welcome To The Solar System ★</p>
+                        <!-- Here we keep track of the time for the player before it reaches 0 -->
                         <h3 class="text-center" id="time-remaining">Time Remaining</h3>
+                        <!-- The timer starts at 30 and dynamically updates to 0 -->
                         <h4 class="timer text-center">⏳ 30 ⏳</h4>
                         <hr style="border-top: 2px solid chartreuse; width: 95%">
                         <br>
+                        <!-- Here we display the number of the question -->
                         <h5 class="text-center" id="question-number"></h5>
+                        <!-- The div below holds the question and answer options per iteration -->
                         <div id="display-trivia-questions">
                             <br>
+                            <!-- Here we display the question itself -->
                             <p class="question form-check-inline text-center"></p>
                             <br>
+                            <!-- Here we have 4 iedentical divs. Each div contains two parts -->
                             <div class="form-check form-check-inline">
+                                <!-- Part 1 is the Bootstrap radio button for each possible solution -->
                                 <input class="answer form-check-input" type="radio" value="a">
+                                <!-- Part 2 is the label (i.e. answer) for each radio button -->
                                 <label class="label label-a form-check-label" id="label" for=""></label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -68,15 +84,22 @@
                         </div>
                         <br>
                         <br>
+                        <!-- This div informs the player of two things -->
                         <div class="answer-message text-center">
+                            <!-- The first message tells the player if they got the right answer -->
                             <h4 id="win-or-loss-message" class="text-center"></h4>
+                            <!-- Here we tell the player the correct answer -->
                             <h5 id="correct-answer-message" class="text-center"></h5>
                         </div>
                         <br>
+                        <!-- This "Next" button triggers the game to move onto the following question once a question is answered -->
+                        <!-- The button triggers *without user input* (see app.js file for details) -->
                         <div class="col-12 text-center" id="next-button">
                             <button type="button" class="btn btn-primary btn-lg next-button text-center">Next
                                 Question</button>
                         </div>
+                        <!-- This button shows up after the player answeres the last question -->
+                        <!-- It gives them a running total of their final score -->
                         <div class="col-12 text-center" id="finish-button">
                             <button type="button" class="btn btn-primary btn-lg finish-button text-center">See Your
                                 Score!</button>
@@ -85,6 +108,7 @@
                 </div>
             </div>
         </div>
+        <!-- This is the third sub-container, called "result-content" -->
         <div class="row result-content">
             <div class="col-12">
                 <div class="row welcome-sub-row">
@@ -95,10 +119,13 @@
                         <br>
                         <h4 class="text-center">Your Final Score Is</h4>
                         <br>
+                        <!-- Here we show the player the total result for their quiz -->
                         <h3 id="display-trivia-results" class="text-center"></h3>
                         <br>
+                        <!-- Here we display how many questions the player got right vs. wrong -->
                         <h5 id="final-tally" class="text-center"></h5>
                         <br>
+                        <!-- This button gives the player the option to restart the game -->
                         <p class="text-center">Click the "Play Again" button to start a new game!</p>
                         <div class="col-12 text-center">
                             <button type="button" class="btn btn-primary btn-lg new-game-button text-center">Play
@@ -108,8 +135,10 @@
                 </div>
             </div>
         </div>
+        <!-- Here we link to the jQuery SDN -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
         </script>
+        <!-- Here we link to our local javascript file that executes the game -->
         <script src="assets/javascript/app.js"></script>
 </body>
 
